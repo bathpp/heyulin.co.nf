@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Paint</title>
+      <script type="text/javascript" src="js/paint/paint.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/index.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  </head>
+    
+<style>
+#place {
+	height: 500px;
+	position: relative;
+}
+#place2{
+	position: absolute;
+	left:550px;
+	top:40px;
+}
+#canvas{
+        position: absolute;
+        border:2px solid gray;
+        height:450px;
+        width:450px;
+        left:20px;
+    }
+#theCanvas {
+	position: absolute;
+	cursor: crosshair;
+}
+#tmpCanvas {
+	position: absolute;
+	cursor: crosshair;
+}
+    
+</style>
+    
+  <body onload="ol(); paint.paintsmall();">
+  
+    <div id="wrapper">
+      
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand"><a href="#">此地无银三百两</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Blog</a></li>
+          <li id="hider"><a href="#">Project <b class="caret"></b></a></li>
+            <div id="projectlist">
+                <li><a href="#">tic tac toe</a></li>
+                <li><a href="paint.html">paint</a></li>
+            </div>
+          
+              
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+          
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <div class="content-header">
+          <h1>
+            <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+            A Simple Paint
+          </h1>
+        </div>
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+              <div id="place">
+                  <div id="canvas">
+				<canvas id="theCanvas" width="450" height="450" ></canvas>
+				<canvas id="tmpCanvas" width="450" height="450" ></canvas>
+                      </div>
+			<table id="place2">
+				<tr>
+					<td>
+						<!-- user interface -->
+						<input  style="margin-bottom:10px;" type="submit" value="undo" onclick="paint.undo();" />
+						<input id = "blur" type="button" value="Blur the Canvas" onclick="paint.blur()"/><br>
+						<input name="whatodraw" value="erase" type="radio" onclick="paint.choosestrategy();"> Eraser 
+						(width: <input style="margin-bottom:10px;" id = "erasewidth" type="range" value="5" min="1" max="20"/>)<br>
+						Line width: <input style="margin-bottom:10px;" id = "linewidth" type="range" value="1" min="1" max="20"/><br>
+						Color chooser: </br>
+						R: 0<input style="margin-top:10px;" id = "colorred" type="range" value="1" min="0" max="255" onclick="paint.paintsmall()"/>255</br>
+						G: 0<input style="margin-bottom:10px;" id = "colorgreen" type="range" value="1" min="0" max="255" onclick="paint.paintsmall()"/>255 <canvas style="border:1px solid black; margin-left:20px;" id="smallCanvas" width="40" height="25" ></canvas><br>
+						B: 0<input style="margin-bottom:10px;" id = "colorblue" type="range" value="1" min="0" max="255" onclick="paint.paintsmall()"/>255</br>
+						Intensity:<input style="margin-bottom:15px;" id = "intensity" type="range" value="0.5" min="0" max="1" step="0.01" onclick="paint.paintsmall()"/></br>
+						What to draw:</br>
+						<input name="whatodraw" value="line" type="radio" checked onclick="paint.choosestrategy();"> line</br>
+						<input name="whatodraw" value="rectangle" type="radio" onclick="paint.choosestrategy();">rectangle</br>
+						<input name="whatodraw" value="oval" type="radio" onclick="paint.choosestrategy();">oval</br>
+						<input style="margin-bottom:15px;" name="whatodraw" value="polygon" type="radio" onclick="paint.choosestrategy();">polygon  &nbsp(Fill after close<input id="fill" value="fill" type="checkbox" >)</br>
+						
+					</td>
+				</tr>
+			</table>
+			</div>
+              
+          </div>
+        </div>
+      </div>
+      
+    </div>
+	
+    <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <!-- Custom JavaScript for the Menu Toggle -->
+    <script>
+        //for the dropdown toggle
+        var hide;
+        $( document ).ready(function() {
+            $( "#projectlist" ).hide();
+            hide = 1;
+        });    
+        $( "#hider" ).click(function() {
+            
+                if(hide==1){
+                    $("#projectlist").show(500 );
+                    hide=0;
+                }
+                else if(hide==0){
+                    $("#projectlist").hide(500);
+                    hide=1;
+                }
+            });
+        
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+    </script>
+  </body>
+</html>

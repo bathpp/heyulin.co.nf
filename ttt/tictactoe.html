@@ -1,0 +1,180 @@
+        
+
+<style>
+#main{            
+    background-color: #F0F0F0 ;
+    width: 500px;
+    }
+  .draggable {
+    position: absolute;       
+    -webkit-transition: All 0.2s ease;
+      -moz-transition: All 0.2s ease;
+      -o-transition: All 0.2s ease;
+    -ms-transition: All 0.2s ease;
+    transition: All 0.2s ease;
+  }
+#worldarea {position: relative; width: 500px;}
+#world {border:1px solid black; height:500px; width: 500px;}
+#playing{width: 500px;}
+</style>
+  <div id="main" >
+    <div id="worldarea">
+    <div id="playing" class="alert-info">Now playing: Tic Tac Toe<br>It supports touch screen, and could allow many users to play together.</div> 
+    <div id="map" style="display:none"></div>
+    <div id="world">
+	<img id="x1" src="img/x.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="x2" src="img/x.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="x3" src="img/x.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="x4" src="img/x.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="x5" src="img/x.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="o1" src="img/o.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="o2" src="img/o.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="o3" src="img/o.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="o4" src="img/o.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="o5" src="img/o.gif" style="z-index:2;" class="draggable ui-draggable" />
+	<img id="tttboard" src="img/tictactoe.gif" style="z-index:1;" class="draggable ui-draggable" />
+    </div>
+  </div>
+</div>
+
+<script>
+      var dragid="";
+      var timer;
+      var down=0;
+      var myimg=["x1","x2","x3","x4","x5","o1","o2","o3","o4","o5","tttboard"];
+      function dragImgIdStart(event){ 
+        dragid = event.target.id;
+        $('#'+dragid).css(
+          {'-webkit-transition': 'All 0.0s ease',
+            '-moz-transition': 'All 0.0s ease',
+            '-o-transition': 'All 0.0s ease',
+          '-ms-transition': 'All 0.0s ease',
+          'transition': 'All 0.0s ease'});
+      }
+      function dragImgIdStop(event){  
+        dragid = '';
+        //$('#'+dragid).css(
+        //  {'-webkit-transition': 'All 0.2s ease',
+      //      '-moz-transition': 'All 0.2s ease',
+     //       '-o-transition': 'All 0.2s ease',
+    //      '-ms-transition': 'All 0.2s ease',
+   //       'transition': 'All 0.2s ease'});
+          
+      }
+
+      
+    function sendMongoStart(){
+      
+        var xmlHttp=null;
+        xmlHttp=GetXmlHttpObject();
+      if (xmlHttp==null) {
+        alert ("Browser does not support HTTP Request");
+        return;
+      }
+      var url="ttt/e8set.php";
+      url=url+"?imgstart=" + dragid;
+      xmlHttp.open("GET",url,true); 
+      xmlHttp.send(); 
+
+    }
+      
+      function sendMongoStop(){
+        var posx;
+        var posy;
+ 
+          var xmlHttp=null;
+          xmlHttp=GetXmlHttpObject();
+        if (xmlHttp==null) {
+          alert ("Browser does not support HTTP Request");
+          return;
+        }
+        posx = $("#"+dragid).position().left;
+        posy = $("#"+dragid).position().top;
+        var url="ttt/e8set.php";
+        url=url+"?imgstop=" + dragid + "&posx=" + posx + "&posy=" + posy;
+        xmlHttp.open("GET",url,true); 
+        xmlHttp.send(); 
+        dragid="";
+        
+      }
+      
+            
+      function readworld(){
+        var state;
+        var xmlHttp=null;
+        var down;
+        xmlHttp=GetXmlHttpObject();
+        if (xmlHttp==null) {
+          alert ("Browser does not support HTTP Request");
+          return;
+        }
+        xmlHttp.onreadystatechange=function(){
+          if (xmlHttp.readyState==4){
+            state = xmlHttp.responseText;
+            var worldstate = JSON.parse(state);
+            for(var i=0; i<myimg.length; i++){
+              imgid = myimg[i];
+              if(imgid != dragid){
+                x = worldstate[imgid][0];
+                y = worldstate[imgid][1];
+                dragable = worldstate[imgid][2];
+
+                if(dragable==0){
+                  $("#"+imgid).draggable("disable");
+                }
+                if(dragable==1){         
+                  $('#'+imgid).css({'left': x + 'px', 'top': y + 'px'});
+                  $("#"+imgid).draggable("enable");
+                }
+              }
+            }           
+          }
+          else{
+            
+            if(down == 0){
+              alert ("Server Down.. Try it later.");
+              down = 1;
+            }
+          }
+
+        }
+        var url="ttt/e8get.php";
+        //url=url+"?worldname=tictactoe";
+        xmlHttp.open("GET",url,true); 
+        xmlHttp.send();
+        
+      }
+          
+      
+      
+      
+      function GetXmlHttpObject() {
+        var xmlHttp=null;
+        try {
+      // Firefox, Opera 8.0+, Safari
+          xmlHttp=new XMLHttpRequest();
+        } catch (e) {
+      //Internet Explorer
+          try {
+            xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+          } catch (e)  {
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        }
+        return xmlHttp;
+      }
+      
+      $(document).ready(function () {
+        $('#world').height(500);
+        $('#world').width(500);
+        $('#world').css('position', 'absolute');
+        $('#map').css('position', 'absolute');
+        $("#world img").draggable({containment:"#world",scroll:false});
+
+        timer = setInterval('readworld();',100);
+        $("#world img").on("dragstart", function(event) { dragImgIdStart(event); sendMongoStart();});
+        //$("#world img").on("dragstop" , function(event) { sendMongoStop(); dragImgIdStop(event); });
+        $("#world img").on("dragstop" , function(event) { sendMongoStop(); });  
+        
+      });
+    </script>

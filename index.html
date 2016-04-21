@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>Now you see Me</title>
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/jquery-ui.css" rel="stylesheet" >
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+  </head>
+
+  <body> 
+    <div id="wrapper">     
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <div class="sidebar-nav">
+          <ul class="nav-pills nav-stacked">
+          <li class="sidebar-brand"><a id="brand" href="index.html"><img src="img/name.png" width="65" height="65" alt="brand"></a></li>
+          <li id="home" class="active"><a href="#home" data-toggle="pill">Home</a></li>
+          <li id="blog"><a href="#blog" data-toggle="pill">Blog</a></li>
+          <li id="project"><a href="#project" data-toggle="pill">Project</a></li>
+          <li id="about"><a href="#about" data-toggle="pill">About</a></li>
+        </ul>
+        </div>
+      </div>
+          
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <div class="content-header">
+          <h1 id="title">
+              <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+            Welcome to my site
+          </h1>
+        </div>
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset" id="place">
+          <p>面必净，发必理，衣必整，纽必结；</p><br>
+          <p>头容正，肩容平，胸容宽，背容直。</p><br>
+          <p>气象：勿傲、勿暴、勿怠；</p><br>
+          <p>颜色：宜和、宜静、宜庄。</p><br><br>
+          <p>Above is a Behavior Motto in Classical Chinese.</p>
+          <p>The page loads slow since it's a free hosting. </p>
+          <p>It has HTML5 feature, so old version IE won't support well.</p>
+		  
+        </div>
+        <div id="tmphex1">
+        <input id ="hexx" class="color {onImmediateChange:'updateInfo(this);'}" value="000000"><br>
+        </div>
+
+      </div>
+      
+    </div>
+	
+    <!-- JavaScript -->
+    <!--<script src="js/jquery-1.10.2.js"></script>-->
+    
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/jscolor/jscolor.js"></script> 
+    <!-- Custom JavaScript for the Menu Toggle -->
+    <script>
+        $("#home").click(function(){
+          $("#place").empty();
+          $("#place").load("home.html");
+          $("#title").text("Welcome to my site");
+        });
+
+        $("#blog").click(function(){
+          $("#place").empty();
+          $("#place").load("blog.html");
+          $("#title").text("Some Blog");
+        });
+        
+        $("#about").click(function(){
+          $("#place").empty();
+          $("#place").load("about.html");
+          $("#title").text("About");
+        });
+        $("#project").click(function(){
+          $("#place").empty();
+          $("#place").load("project.html");
+          $("#title").text("The Work");
+        });
+
+        $('#myslide').on('slide',function(){
+            $('.carousel-caption').fadeOut(500);
+        })
+        $('#myslide').on('slide',function(){
+            $('.carousel-caption').fadeIn(500);
+            
+        });   
+        
+
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+    </script>
+  </body>
+</html>

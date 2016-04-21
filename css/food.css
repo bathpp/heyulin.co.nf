@@ -1,0 +1,66 @@
+
+body {
+    
+    background-color:#ffffff;
+}
+
+#myfooter {
+    height: 20px;
+    width:auto;
+    border-style:solid;
+    border-color:gray;
+    border-width:1px;
+    
+    
+}
+    
+.container .credit {
+    margin: 0px 10px 0px;
+    font-size:85%;
+}
+
+.container{
+    height:800px;
+    width:1000px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+<!--hero unit not needed
+.hero-unit {
+    height: 100%;
+    width: auto;
+    background-image: url("../img/bg1.jpg");    
+}
+-->
+
+#myheader{
+    
+}
+#logo { 
+    height:60px;
+    background-image:url("../img/food_header.jpg");
+    background-repeat:repeat-x;
+}
+.carousel-indicators {
+    top: 92%;
+	right: 200px;
+}
+
+li {
+    width:20%;
+    height:50px;
+}
+a{
+    height:50px
+}
+
+/*.nav-stacked>li{
+    background-image:url("../img/tab.jpg");
+    border-radius:7px;
+}
+/*This is a comment
+li {
+  background-color: #2c2c2c;
+}
+*/

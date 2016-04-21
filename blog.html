@@ -1,0 +1,76 @@
+<style type="text/css">
+#myslide{
+  max-width: 600px;
+
+}
+.alert{
+  max-width:600px;
+}
+</style>
+        <div  class="carousel slide" id="myslide">
+          <ol class="carousel-indicators">
+                <li data-target="#myslide" data-slide-to="0" class="active"></li>
+                <li data-target="#myslide" data-slide-to="1"></li>
+                <li data-target="#myslide" data-slide-to="2"></li>
+            </ol>
+        <div class="carousel-inner" id="slideinner">
+          <div class="item active">
+            <img src="img/004.jpg" alt="slide1" />
+              
+            <div class="carousel-caption">
+              <p>Yesterday</p>
+            </div>
+          </div>
+          <div class="item">
+              <a href="#" >
+            <img src="img/bg13.jpg" alt="slide2" />
+            </a>
+            <div class="carousel-caption">
+              <p>You said</p>
+            </div>
+          </div>
+          <div class="item">
+              <a href="#" >
+            <img src="img/bg12.jpg" alt="slide3" />
+           </a>
+            <div class="carousel-caption">
+              <p>Tomorrow</p>
+            </div>
+          </div>
+    
+        </div>
+          <a class="carousel-control left" href="#myslide" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#myslide" data-slide="next">&rsaquo;</a>
+      </div>
+	  
+
+    <div class="alert alert-info col-md-8">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dec 30 2013</h3>
+        </div>
+        <div class="well">
+          Added a little javascript game in project. I am using jQuery .load() for the right side area of my web, since I don't want the nav bar to keep reloading, however this has been giving me troubles. 1st thing was the paint color picker can't be created froming loading paint.html to the display area. I created a sample color picker and append it to the div after load, but it won't hold the sample after reload. Really don't know what's going on. I posted the <a href="http://stackoverflow.com/questions/20535157/create-a-jscolor-by-click-event-or-by-loading-a-sample-html-that-contains-jscol">problem</a> on stackoverflow, no one answered yet. 2nd problem it's this game's timer, I could not clear the timer interval after leaving this game, unless I pause it. Haven't worked out a good solution yet. Well, I could solve all of these by just let the whole page reload for each link clicked, but I dont wanna do that. I'll Keep working on this.
+        </div>
+      </div></br>
+
+	  <div class="alert alert-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dec 11 2013</h3>
+        </div>
+        <div class="well">
+          Implement some UI to the paint, thanks to jscolor.com, using the color picker of their work.</br>
+        Got a problem when load the paint.html in to main page, the color picker won't trigger, don't know why, can only pull out color picker in main page, even though I loaded the js file on both html. So I have a color picker hide in main, and use jQuery to append it to paint page after paint.html loaded.  
+        </div>
+      </div></br>
+
+	  <div class="alert alert-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Dec 09 2013</h3>
+        </div>
+        <div class="well">
+          Just get this site basically working..Gonna implement more stuff.<br>
+        Tic tac toe changed server from MongoDB to MySql, since it is free hosting, the server sometimes slow or even down.<br>Also changed the way the game state is saved in DB and make a better use of JSON, now it saves each img's position individually, and only pull out the not dragging img's position each read, thought it will solve the lock img issue happened before, but NOP. Also, Firefox seems easier to get the img locked, not as soomth as Chrome.<br>
+        I think stop the reading timer for a bit like 100ms every time a drag event stops then resume the reading timer might solve it. OR, use new version of JQuery? 
+        </div>
+      </div></br>
+      

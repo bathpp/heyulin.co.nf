@@ -1,0 +1,61 @@
+
+    <style>
+    .alert{
+      max-width:600px;
+    }
+    .well{
+      min-height: 200px;
+    }
+    p{
+      margin-top: -190px;
+      margin-left: 220px;
+    }
+    </style>
+    <div class="alert alert-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">Tic Tac Toe</h4>
+        </div>
+        <div class="well">
+          <a id="ttt" href="#ttt"><img src="img/ttt.png" width="200" height="200" alt="ttt"></a>
+          <p>A board game template, support multi-player and touch screen.<br>
+            Use AJAX to get the board refreshing, back-end is PHP and MySQL.</p>
+        </div>
+      </div>
+
+	  <div class="alert alert-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">Paint</h4>
+        </div>
+        <div class="well">
+          <a id="paint" href="#paint"><img src="img/paintimg.png" width="200" height="200" alt="paint"></a>
+            <p>A little paint application.<br>
+            Built in JavaScript and HTML5 Canvas.</p>
+        </div>
+      </div>
+
+	  <div class="alert alert-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">Game</h4>
+        </div>
+        <div class="well">
+          <a id="game" href="#game"><img src="img/gameimg.png" width="200" height="200" alt="game"></a>
+            <p>A little JavaScript game.<br>Used prototype.</p>
+        </div>
+      </div>
+
+    <script>
+        $("#ttt").click(function(){
+          $("#place").empty();
+          $("#place").load("ttt/tictactoe.html");
+        });
+        $("#paint").click(function(){
+          $("#place").empty();
+          $("#place").load("paint/paint.html");
+        });
+        $("#game").click(function(){
+          $("#place").empty();
+          $("#place").load("ww/ww.html");
+        });
+
+    </script>
+      

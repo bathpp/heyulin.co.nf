@@ -1,0 +1,65 @@
+<link href="css/bootstrap.css" rel="stylesheet">
+
+<link href="css/food.css" rel="stylesheet">    
+<style type="text/css"></style>
+<body>
+<div  class="carousel slide" id="myslide">
+          <ol class="carousel-indicators">
+                <li data-target="#myslide" data-slide-to="0" class="active"></li>
+                <li data-target="#myslide" data-slide-to="1"></li>
+                <li data-target="#myslide" data-slide-to="2"></li>
+            </ol>
+        <div class="carousel-inner" id="slideinner">
+          <div class="item active">
+              <a href="home.html" >
+            <img src="img/bg1.jpg" alt="food1" />
+            </a>
+            <div class="carousel-caption">
+              <p>The Food1</p>
+             
+            </div>
+          </div>
+          <div class="item">
+              <a href="#" >
+            <img src="img/bg2.jpg" alt="food2" />
+            </a>
+            <div class="carousel-caption">
+              <p>The Food2</p>
+             
+            </div>
+          </div>
+          <div class="item">
+              <a href="#" >
+            <img src="img/bg3.jpg" alt="food3" />
+           </a>
+            <div class="carousel-caption">
+              <p>The Food3</p>
+             
+            </div>
+          </div>
+    
+        </div><!-- .carousel-inner -->
+        <!--  next and previous controls here
+              href values must reference the id for this carousel -->
+          <a class="carousel-control left" href="#myslide" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#myslide" data-slide="next">&rsaquo;</a>
+      </div>
+</body>
+<script src="js/jquery-1.10.2.min.js"></script>
+    
+    <!-- Bootstrap jQuery plugins compiled and minified -->
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('.carousel').carousel({
+          interval: 3000
+        });
+      });
+        
+        $('#myslide').on('slide',function(){
+            $('.carousel-caption').fadeOut(500);
+        })
+        $('#myslide').on('slide',function(){
+            $('.carousel-caption').fadeIn(500);
+        })
+    </script>

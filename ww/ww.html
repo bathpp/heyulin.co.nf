@@ -1,0 +1,110 @@
+
+		<title>Warehouse Wars</title>
+		<script language="javascript" src="ww/ww.js" > </script>
+
+		<script> 
+			stage=null;
+			// SOME GLUE CODE CONNECTING THIS PAGE TO THE STAGE
+			interval1=null;
+			interval2=null;
+			n=0
+			
+			function timer(){
+				document.getElementById("time").innerHTML="Timer: "+n;
+				n++;
+			}
+			function setupGame(){
+				n=0;
+				var x=20;
+				var y=20;
+				var z=false;
+				stage=new Stage(x,y,z,"stage");					
+				stage.initialize();
+				document.getElementById("time").innerHTML="Timer: "+n;
+					
+			}
+			function startGame(){
+				
+				if(interval1==null && document.getElementById("time")!=null){
+					interval1=setInterval('timer()',1000 );
+					interval2=setInterval('stage.step()',1000 ); // myInterval is a global, so we can stop it
+				}
+				document.onkeypress=function(event){
+					//alert(event.keyCode)
+					if(event.keyCode == 49){stage.player.move(stage,-1,1);}
+					if(event.keyCode == 50){stage.player.move(stage, 0,1);}
+					if(event.keyCode == 51){stage.player.move(stage, 1,1);}
+					if(event.keyCode == 52){stage.player.move(stage,-1,0);}
+					if(event.keyCode == 54){stage.player.move(stage, 1,0);}
+					if(event.keyCode == 55){stage.player.move(stage,-1,-1);}
+					if(event.keyCode == 56){stage.player.move(stage, 0,-1);}
+					if(event.keyCode == 57){stage.player.move(stage, 1,-1);}
+				};
+					
+			}
+			function pauseGame(){
+				clearInterval(interval1);
+				clearInterval(interval2);
+				interval1=null;
+				interval2=null;
+				
+			}
+			// YOUR CODE GOES HERE
+		</script>
+			<div id="gamecontrol">
+			<div id="button" >
+				<a><input  type="button" value="NewGame" onclick="pauseGame(); setupGame(); startGame();"></a>
+				<a><input  type="button" value="Pause" onclick="pauseGame();"></a>
+				<a><input  type="button" value="UnPause" onclick="startGame();"></a> 
+			</div>
+			<br>
+			<table>
+				<tr>
+					<td> <div id="stage"> </div></td> 
+					<td>
+						<center>
+							<p >Use the number pad to control the player.<br>
+							Surround the monster with boxes or wall to kill.</p>
+							<h4 id="time" >Timer:</h4>
+							<h2>Charactors</h2>
+							<table class="legend">
+								<tr>
+									<td> <img src="ww/icons/blank.gif" id="blankImage" /> </td>
+									<td> <img src="ww/icons/emblem-package-2-24.png" id="boxImage" /> </td>
+									<td> <img src="ww/icons/face-cool-24.png" id="playerImage" /> </td>
+									<td> <img src="ww/icons/face-devil-grin-24.png" id="monsterImage" /> </td>	
+									<td> <img src="ww/icons/wall.jpeg" id="wallImage" /> </td>
+								</tr>
+								<tr>
+									<td> </td>
+									<td> Box </td>
+									<td> Player </td>
+									<td> Monster </td>
+									<td> Wall </td>
+								</tr>
+							</table>
+							<h2>Controls</h2>
+							<table class="controls">
+								<tr>
+									<td><img src="ww/icons/north_west.svg" onclick="stage.player.move(stage,-1,-1)" /></td>
+									<td><img src="ww/icons/north.svg" onclick="stage.player.move(stage,0,-1)" /></td>
+									<td><img src="ww/icons/north_east.svg" onclick="stage.player.move(stage,1,-1)"/></td>
+								</tr>
+								<tr>
+									<td><img src="ww/icons/west.svg" onclick="stage.player.move(stage,-1,0)"/></td>
+									<td>&nbsp;</td>
+									<td><img src="ww/icons/east.svg" onclick="stage.player.move(stage,1,0)"/></td>
+								</tr>
+								<tr>
+									<td><img src="ww/icons/south_west.svg" onclick="stage.player.move(stage,-1,1)"/></td>
+									<td><img src="ww/icons/south.svg" onclick="stage.player.move(stage,0,1)"/></td>
+									<td><img src="ww/icons/south_east.svg" onclick="stage.player.move(stage,1,1)"/></td>
+								</tr>
+							</table>
+						</center>
+					</td>
+				</tr>
+			</table>
+
+
+
